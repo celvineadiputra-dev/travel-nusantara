@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_nusantara/pages/OnBoardingScreenPage.dart';
 import 'package:travel_nusantara/pages/SplashScreenPage.dart';
 
 void main() {
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/' : (context) => const SplashScreen()
+        '/' : (context) => const SplashScreen(),
+        '/onboarding' : (context) => OnBoardingScreenPage()
       },
     );
   }

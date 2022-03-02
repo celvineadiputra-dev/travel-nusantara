@@ -1,0 +1,1 @@
+const airplane = 'assets/icon/airplane.png';
