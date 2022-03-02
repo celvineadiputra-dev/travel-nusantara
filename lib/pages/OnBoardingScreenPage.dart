@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_nusantara/assets/images.dart';
+import 'package:travel_nusantara/constants/typography.dart';
+import 'package:travel_nusantara/widgets/buttonRoundedWidget.dart';
 
 import '../constants/dimension.dart';
 
@@ -31,8 +33,20 @@ class OnBoardingScreenPage extends StatelessWidget {
                 ),
               ),
               child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: d38, horizontal: d40),
                 child: Column(
-                  children: [Text("HELLO")],
+                  children: [
+                    Text(
+                      "Start your journey",
+                      style: bold.copyWith(fontSize: d48),
+                    ),
+                    Text(
+                      "Join and carve out the goodness of your vacation trip with us",
+                      style: regular.copyWith(fontSize: d16),
+                    ),
+                    const ButtonRoundedWidget(label: "Get Started", color: Colors.red)
+                  ],
                 ),
               ),
             ),
