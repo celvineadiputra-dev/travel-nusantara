@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_nusantara/assets/images.dart';
+import 'package:travel_nusantara/constants/colors.dart';
 import 'package:travel_nusantara/constants/typography.dart';
 import 'package:travel_nusantara/widgets/buttonRoundedWidget.dart';
 
@@ -23,7 +24,7 @@ class OnBoardingScreenPage extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 300,
+              height: 378,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -36,16 +37,27 @@ class OnBoardingScreenPage extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: d38, horizontal: d40),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Start your journey",
-                      style: bold.copyWith(fontSize: d48),
+                      style: bold.copyWith(fontSize: d48, color: black),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: d24,
                     ),
                     Text(
                       "Join and carve out the goodness of your vacation trip with us",
-                      style: regular.copyWith(fontSize: d16),
+                      style: regular.copyWith(fontSize: d16, color: gray),
+                      textAlign: TextAlign.center,
                     ),
-                    const ButtonRoundedWidget(label: "Get Started", color: Colors.red)
+                    const SizedBox(
+                      height: d40,
+                    ),
+                    const ButtonRoundedWidget(
+                        label: "Get Started", color: primary, to: '/home',)
                   ],
                 ),
               ),

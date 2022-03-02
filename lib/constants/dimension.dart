@@ -6,3 +6,4 @@ const double d38 = 38;
 const double d40 = 30;
 const double d48 = 48;
 const double d50 = 50;
+const double d100 = 100;

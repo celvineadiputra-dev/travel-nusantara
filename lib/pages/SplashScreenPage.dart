@@ -38,16 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              airplane,
-              width: d50,
-              height: d50,
-            ),
-            const SizedBox(
-              height: d10,
-            ),
-            Text(
-              appName,
-              style: medium.copyWith(fontSize: d18),
+              logo,
+              width: 176,
+              height: 133,
             )
           ],
         ),
