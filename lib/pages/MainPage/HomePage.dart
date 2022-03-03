@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:travel_nusantara/assets/images.dart';
 import 'package:travel_nusantara/constants/typography.dart';
+import 'package:travel_nusantara/widgets/cardPopularWidget.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/dimension.dart';
@@ -77,6 +80,26 @@ class _HomePageState extends State<HomePage> {
               style: medium.copyWith(fontSize: d16, color: primary),
             )
           ],
+        ),
+        const SizedBox(
+          height: d24,
+        ),
+        SizedBox(
+          height: 322,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              CardPopularWidget(),
+              const SizedBox(
+                width: d10,
+              ),
+              CardPopularWidget(),
+              const SizedBox(
+                width: d10,
+              ),
+              CardPopularWidget(),
+            ],
+          ),
         )
       ],
     );
@@ -107,7 +130,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: d16,
             ),
-            popular()
+            popular(),
           ],
         ),
       ),

@@ -3,6 +3,11 @@ const airplane = 'assets/icon/airplane.png';
 const temple = 'assets/images/temple.png';
 const notification = 'assets/icon/notification.png';
 const pin = 'assets/icon/pin.png';
+const pin2 = 'assets/icon/pin2.png';
+const example = 'assets/images/example.png';
+const star = 'assets/icon/star.png';
+const love2 = 'assets/icon/love2.png';
+const loveActive2 = 'assets/icon/love_active2.png';
 
 
 const home = 'assets/icon/home.png';
