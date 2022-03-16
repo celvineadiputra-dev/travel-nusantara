@@ -57,7 +57,7 @@ class OnBoardingScreenPage extends StatelessWidget {
                       height: d40,
                     ),
                     const ButtonRoundedWidget(
-                        label: "Get Started", color: primary, to: '/home',)
+                        label: "Get Started", to: '/login')
                   ],
                 ),
               ),

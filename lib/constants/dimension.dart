@@ -1,3 +1,4 @@
+const double d2 = 2;
 const double d5 = 5;
 const double d10 = 10;
 const double d16 = 16;
