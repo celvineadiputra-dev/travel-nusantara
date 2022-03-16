@@ -8,6 +8,7 @@ const example = 'assets/images/example.png';
 const star = 'assets/icon/star.png';
 const love2 = 'assets/icon/love2.png';
 const loveActive2 = 'assets/icon/love_active2.png';
+const search = 'assets/icon/search.png';
 
 
 const home = 'assets/icon/home.png';

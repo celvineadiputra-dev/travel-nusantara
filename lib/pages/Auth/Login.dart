@@ -1,17 +1,36 @@
+import 'dart:convert';
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
-import 'package:travel_nusantara/constants/colors.dart';
 import 'package:travel_nusantara/constants/dimension.dart';
+import 'package:travel_nusantara/pages/Models/AuthModel.dart';
 import 'package:travel_nusantara/widgets/InputWidget.dart';
+import 'package:travel_nusantara/widgets/buttonRoundedCallbackWidget.dart';
 import 'package:travel_nusantara/widgets/buttonRoundedWidget.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
   Widget build(BuildContext context) {
+    TextEditingController inputFirstNameController = TextEditingController(text: '');
+    TextEditingController inputLastNameController = TextEditingController(text: '');
+
+    saveData() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      AuthModel user = AuthModel(firstName: inputFirstNameController.text, lastName: inputLastNameController.text);
+      prefs.setString("auth_user", jsonEncode(user));
+      developer.log(jsonEncode(user));
+    }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: Padding(
       padding: const EdgeInsets.all(d16),
       child: Center(
@@ -26,13 +45,13 @@ class Login extends StatelessWidget {
             const SizedBox(
               height: d16,
             ),
-            const InputWidget(label: "First Name",),
+            InputWidget(label: "First Name", inputController: inputFirstNameController,),
             const SizedBox(
-              height: d10,
+              height: d16,
             ),
-            const InputWidget(label: "Last Name",),
+            InputWidget(label: "Last Name", inputController: inputLastNameController,),
             const SizedBox(height: d16,),
-            const ButtonRoundedWidget(label: "Login", to: '/home', isFull: true, padding: d5, fontSize: d24,)
+            ButtonRoundedCallbackWidget(label: "Login", to: '/home', isFull: true, padding: d2, fontSize: d20, callback: saveData,),
           ],
         ),
       ),

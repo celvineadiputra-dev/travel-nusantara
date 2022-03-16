@@ -6,11 +6,14 @@ import '../constants/dimension.dart';
 class InputWidget extends StatelessWidget {
   final String label;
   final Color color;
-  const InputWidget({Key? key, required this.label, this.color = primary}) : super(key: key);
+  final TextEditingController inputController;
+
+  const InputWidget({Key? key, required this.label,  required this.inputController, this.color = primary}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: inputController,
       maxLines: 1,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
@@ -21,7 +24,7 @@ class InputWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(d10)
           ),
           enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: gray, width: d2),
+              borderSide: const BorderSide(color: gray2, width: d2),
               borderRadius: BorderRadius.circular(d10)
           )
       ),

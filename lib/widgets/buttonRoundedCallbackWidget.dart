@@ -4,27 +4,30 @@ import 'package:travel_nusantara/constants/typography.dart';
 
 import '../constants/dimension.dart';
 
-class ButtonRoundedWidget extends StatelessWidget {
+class ButtonRoundedCallbackWidget extends StatelessWidget {
   final String label, to;
   final Color color;
   final bool isFull;
   final double padding;
   final double fontSize;
+  final VoidCallback callback;
 
-  const ButtonRoundedWidget(
+  const ButtonRoundedCallbackWidget(
       {Key? key,
       required this.label,
       required this.to,
       this.color = primary,
       this.isFull = false,
       this.padding = 0,
-      this.fontSize = d16})
+      this.fontSize = d16,
+      required this.callback})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        callback();
         Navigator.pushNamed(context, to);
       },
       child: Container(

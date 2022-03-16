@@ -1,8 +1,12 @@
-import 'dart:ui';
+import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
 import 'package:travel_nusantara/constants/typography.dart';
+import 'package:travel_nusantara/pages/Models/AuthModel.dart';
 import 'package:travel_nusantara/widgets/cardPopularWidget.dart';
 
 import '../../constants/colors.dart';
@@ -16,6 +20,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late SharedPreferences sharedPrefs;
+  late AuthModel? auth = AuthModel(firstName: "Loading", lastName: "Loading");
+
+  @override
+  initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        sharedPrefs = prefs;
+      });
+      String? n = sharedPrefs.getString('auth_user');
+      auth = AuthModel.fromJson(jsonDecode(n!));
+    });
+  }
+
   Widget topApp() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             style: regularPoppins.copyWith(color: black),
             children: [
               TextSpan(
-                text: "Celvine",
+                text: auth?.firstName ?? "-",
                 style: semiBoldPoppins.copyWith(color: black),
               ),
             ],
@@ -60,6 +79,28 @@ class _HomePageState extends State<HomePage> {
               style: extraLight.copyWith(color: gray),
             )
           ],
+        ),
+        SizedBox(
+          height: d16,
+        ),
+        Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(d10)
+          ),
+          child: TextFormField(
+            maxLines: 1,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              prefixIcon: Padding(
+                padding: EdgeInsets.all(2),
+                child: Image.asset(search, width: d10, height: d10,),
+              ),
+              hintText: "Try to find Palembang",
+              border: InputBorder.none
+            ),
+          ),
         )
       ],
     );
