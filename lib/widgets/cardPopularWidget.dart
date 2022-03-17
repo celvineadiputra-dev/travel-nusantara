@@ -6,7 +6,16 @@ import '../constants/dimension.dart';
 import '../constants/typography.dart';
 
 class CardPopularWidget extends StatelessWidget {
-  const CardPopularWidget({Key? key}) : super(key: key);
+  final String imageCard, destinationName, price, rating, subCountry;
+
+  const CardPopularWidget(
+      {Key? key,
+      required this.imageCard,
+      required this.destinationName,
+      required this.price,
+      required this.rating,
+      required this.subCountry})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +23,7 @@ class CardPopularWidget extends StatelessWidget {
       width: 212,
       child: Stack(
         children: [
-          Image.asset(example),
+          Image.network(imageCard),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -25,8 +34,9 @@ class CardPopularWidget extends StatelessWidget {
                 padding: EdgeInsets.all(d5),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(100),)
-                ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(100),
+                    )),
                 child: Image.asset(love2),
               ),
             ),
@@ -39,22 +49,20 @@ class CardPopularWidget extends StatelessWidget {
                 height: 140,
                 decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(d10))),
+                    borderRadius: BorderRadius.all(Radius.circular(d10))),
                 child: Padding(
                   padding: EdgeInsets.all(d10),
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Bali",
+                            destinationName,
                             style: bold.copyWith(fontSize: d16),
                           ),
                           Text(
-                            "Rp. 170K",
+                            this.price,
                             style: bold.copyWith(fontSize: d16),
                           ),
                         ],
@@ -73,7 +81,7 @@ class CardPopularWidget extends StatelessWidget {
                             width: d5,
                           ),
                           Text(
-                            "4.5 ratings",
+                            '$rating ratings',
                             style: regular.copyWith(fontSize: 14),
                           )
                         ],
@@ -92,7 +100,7 @@ class CardPopularWidget extends StatelessWidget {
                             width: d5,
                           ),
                           Text(
-                            "Osenia, America",
+                            subCountry,
                             style: regular.copyWith(fontSize: 14),
                           )
                         ],
@@ -113,7 +121,7 @@ class CardPopularWidget extends StatelessWidget {
                           children: [
                             Padding(
                               padding:
-                              const EdgeInsets.symmetric(vertical: d10),
+                                  const EdgeInsets.symmetric(vertical: d10),
                               child: Text(
                                 "More detail",
                                 style: semiBoldPoppins.copyWith(

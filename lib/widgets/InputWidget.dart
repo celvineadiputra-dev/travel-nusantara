@@ -19,12 +19,14 @@ class InputWidget extends StatelessWidget {
       decoration: InputDecoration(
           hintText: label,
           labelText: label,
+          filled: true,
+          fillColor: gray3,
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: color, width: d2),
               borderRadius: BorderRadius.circular(d10)
           ),
           enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: gray2, width: d2),
+              borderSide: const BorderSide(color: Colors.transparent, width: d2),
               borderRadius: BorderRadius.circular(d10)
           )
       ),

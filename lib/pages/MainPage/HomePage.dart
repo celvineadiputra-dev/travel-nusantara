@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
 import 'package:travel_nusantara/constants/typography.dart';
+import 'package:travel_nusantara/pages/Data/DestinationData.dart';
 import 'package:travel_nusantara/pages/Models/AuthModel.dart';
+import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 import 'package:travel_nusantara/widgets/cardPopularWidget.dart';
+import 'package:travel_nusantara/widgets/recommendedCardWidget.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/dimension.dart';
@@ -86,20 +88,21 @@ class _HomePageState extends State<HomePage> {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(d10)
-          ),
+              color: Colors.white, borderRadius: BorderRadius.circular(d10)),
           child: TextFormField(
             maxLines: 1,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(2),
-                child: Image.asset(search, width: d10, height: d10,),
-              ),
-              hintText: "Try to find Palembang",
-              border: InputBorder.none
-            ),
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Image.asset(
+                    search,
+                    width: d10,
+                    height: d10,
+                  ),
+                ),
+                hintText: "Try to find Palembang",
+                border: InputBorder.none),
           ),
         )
       ],
@@ -126,23 +129,72 @@ class _HomePageState extends State<HomePage> {
           height: d24,
         ),
         SizedBox(
-          height: 322,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
+            height: 322,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: destinationPopularData.length,
+              itemBuilder: (BuildContext context, int index) {
+                late DestinationModel destination = destinationPopularData[index];
+                return Row(
+                  children: [
+                    CardPopularWidget(
+                        imageCard: destination.imageCard,
+                        destinationName: destination.destinationName,
+                        price: destination.price,
+                        rating: destination.rating,
+                        subCountry: destination.subCountry),
+                    const SizedBox(
+                      width: d10,
+                    ),
+                  ],
+                );
+              },
+            ))
+      ],
+    );
+  }
+
+  Widget recommended() {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CardPopularWidget(),
-              const SizedBox(
-                width: d10,
+              Text(
+                "Recommended",
+                style: bold.copyWith(fontSize: d18),
               ),
-              CardPopularWidget(),
-              const SizedBox(
-                width: d10,
+              Text(
+                "Show All",
+                style: medium.copyWith(fontSize: d16, color: primary),
               ),
-              CardPopularWidget(),
             ],
           ),
-        )
-      ],
+          const SizedBox(
+            height: d16,
+          ),
+          Column(
+            children: [
+              RecommendedCardWidget(
+                  placeName: "Eiffel Tower",
+                  price: "Rp. 100 K",
+                  sumStar: "4.8",
+                  location: "Mumbai, China"),
+              SizedBox(
+                height: d16,
+              ),
+              RecommendedCardWidget(
+                  placeName: "Eiffel Tower",
+                  price: "Rp. 100 K",
+                  sumStar: "4.8",
+                  location: "Mumbai, China")
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -172,6 +224,10 @@ class _HomePageState extends State<HomePage> {
               height: d16,
             ),
             popular(),
+            SizedBox(
+              height: d16,
+            ),
+            recommended()
           ],
         ),
       ),

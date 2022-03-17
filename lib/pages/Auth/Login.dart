@@ -4,6 +4,7 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
+import 'package:travel_nusantara/constants/colors.dart';
 import 'package:travel_nusantara/constants/dimension.dart';
 import 'package:travel_nusantara/pages/Models/AuthModel.dart';
 import 'package:travel_nusantara/widgets/InputWidget.dart';
@@ -31,30 +32,35 @@ class _LoginState extends State<Login> {
     }
     return Scaffold(
       resizeToAvoidBottomInset: false,
-        body: Padding(
+        body: Container(
+          decoration: BoxDecoration(
+            color: Colors.white
+          ),
+          child: Padding(
       padding: const EdgeInsets.all(d16),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              logo,
-              width: 176,
-              height: 133,
-            ),
-            const SizedBox(
-              height: d16,
-            ),
-            InputWidget(label: "First Name", inputController: inputFirstNameController,),
-            const SizedBox(
-              height: d16,
-            ),
-            InputWidget(label: "Last Name", inputController: inputLastNameController,),
-            const SizedBox(height: d16,),
-            ButtonRoundedCallbackWidget(label: "Login", to: '/home', isFull: true, padding: d2, fontSize: d20, callback: saveData,),
-          ],
-        ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                logo,
+                width: 176,
+                height: 133,
+              ),
+              const SizedBox(
+                height: d16,
+              ),
+              InputWidget(label: "First Name", inputController: inputFirstNameController,),
+              const SizedBox(
+                height: d16,
+              ),
+              InputWidget(label: "Last Name", inputController: inputLastNameController,),
+              const SizedBox(height: d16,),
+              ButtonRoundedCallbackWidget(label: "Login", to: '/home', isFull: true, padding: d2, fontSize: d20, callback: saveData,),
+            ],
+          ),
       ),
-    ));
+    ),
+        ));
   }
 }
