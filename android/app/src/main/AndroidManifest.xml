@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.celvine.travel.nusantara.travel_nusantara">
+	<uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Travel Nusantara"
         android:name="${applicationName}"
