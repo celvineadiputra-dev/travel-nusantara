@@ -135,7 +135,8 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               itemCount: destinationPopularData.length,
               itemBuilder: (BuildContext context, int index) {
-                late DestinationModel destination = destinationPopularData[index];
+                late DestinationModel destination =
+                    destinationPopularData[index];
                 return Row(
                   children: [
                     CardPopularWidget(
@@ -176,22 +177,26 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: d16,
           ),
-          Column(
-            children: [
-              RecommendedCardWidget(
-                  placeName: "Eiffel Tower",
-                  price: "Rp. 100 K",
-                  sumStar: "4.8",
-                  location: "Mumbai, China"),
-              SizedBox(
-                height: d16,
-              ),
-              RecommendedCardWidget(
-                  placeName: "Eiffel Tower",
-                  price: "Rp. 100 K",
-                  sumStar: "4.8",
-                  location: "Mumbai, China")
-            ],
+          SizedBox(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: destinationRecommendedData.length,
+              itemBuilder: (BuildContext context, int index) {
+                late DestinationModel destination =
+                    destinationRecommendedData[index];
+                return Column(
+                  children: [
+                    RecommendedCardWidget(
+                      placeName: destination.destinationName,
+                      price: destination.price,
+                      sumStar: destination.rating,
+                      location: destination.subCountry,
+                      imageMini: destination.imageMini,
+                    )
+                  ],
+                );
+              },
+            ),
           )
         ],
       ),

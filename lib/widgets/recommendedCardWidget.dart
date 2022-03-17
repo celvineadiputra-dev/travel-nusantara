@@ -6,14 +6,15 @@ import '../constants/dimension.dart';
 import '../constants/typography.dart';
 
 class RecommendedCardWidget extends StatelessWidget {
-  final String placeName, price, sumStar, location;
+  final String placeName, price, sumStar, location, imageMini;
 
   const RecommendedCardWidget(
       {Key? key,
       required this.placeName,
       required this.price,
       required this.sumStar,
-      required this.location})
+      required this.location,
+      required this.imageMini})
       : super(key: key);
 
   @override
@@ -24,8 +25,8 @@ class RecommendedCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(d10),
       child: Row(
         children: [
-          Image.asset(
-            illustration,
+          Image.network(
+            imageMini,
             width: 68,
             height: 68,
           ),
