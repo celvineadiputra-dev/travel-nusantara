@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/pages/MainPage/Detail/DestinationDetail.dart';
 import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 
@@ -7,7 +8,7 @@ import '../constants/colors.dart';
 import '../constants/dimension.dart';
 import '../constants/typography.dart';
 
-class CardPopularWidget extends StatelessWidget {
+class CardPopularWidget extends StatefulWidget {
   final String imageCard, destinationName, price, rating, subCountry;
   final DestinationModel destination;
 
@@ -22,12 +23,19 @@ class CardPopularWidget extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<CardPopularWidget> createState() => _CardPopularWidgetState();
+}
+
+class _CardPopularWidgetState extends State<CardPopularWidget> {
+  late bool isLove = false;
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 212,
       child: Stack(
         children: [
-          Image.network(imageCard),
+          Image.network(widget.imageCard),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -41,7 +49,14 @@ class CardPopularWidget extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(100),
                     )),
-                child: Image.asset(love2),
+                child: InkWell(
+                  onTap: (){
+                    setState(() {
+                      isLove = !isLove;
+                    });
+                  },
+                  child: Image.asset(isLove || widget.destination.isLove ? likeActive : like),
+                ),
               ),
             ),
           ),
@@ -62,11 +77,11 @@ class CardPopularWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            destinationName,
+                            widget.destinationName,
                             style: bold.copyWith(fontSize: d16),
                           ),
                           Text(
-                            this.price,
+                            this.widget.price,
                             style: bold.copyWith(fontSize: d16),
                           ),
                         ],
@@ -85,7 +100,7 @@ class CardPopularWidget extends StatelessWidget {
                             width: d5,
                           ),
                           Text(
-                            '$rating ratings',
+                            '${widget.rating} ratings',
                             style: regular.copyWith(fontSize: 14),
                           )
                         ],
@@ -104,7 +119,7 @@ class CardPopularWidget extends StatelessWidget {
                             width: d5,
                           ),
                           Text(
-                            subCountry,
+                            widget.subCountry,
                             style: regular.copyWith(fontSize: 14),
                           )
                         ],
@@ -127,7 +142,7 @@ class CardPopularWidget extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return DestinationDetail(
-                                    destination: destination,
+                                    destination: widget.destination,
                                   );
                                 },
                               ),

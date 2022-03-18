@@ -23,8 +23,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late bool _isLoading = true;
   late SharedPreferences sharedPrefs;
-  late AuthModel? auth = AuthModel(firstName: "Loading", lastName: "Loading");
+  late AuthModel? auth;
 
   @override
   initState() {
@@ -35,6 +36,10 @@ class _HomePageState extends State<HomePage> {
       });
       String? n = sharedPrefs.getString('auth_user');
       auth = AuthModel.fromJson(jsonDecode(n!));
+
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -48,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             style: regularPoppins.copyWith(color: black),
             children: [
               TextSpan(
-                text: auth?.firstName ?? "-",
+                text: _isLoading ? "No Name" : auth?.firstName,
                 style: semiBoldPoppins.copyWith(color: black),
               ),
             ],
@@ -130,37 +135,40 @@ class _HomePageState extends State<HomePage> {
           height: d24,
         ),
         SizedBox(
-            height: 322,
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (overScroll) {
-                overScroll.disallowGlow();
-                return false;
-              },
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: destinationPopularData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  late DestinationModel destination =
+          height: 322,
+          child: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (overScroll) {
+              overScroll.disallowIndicator();
+              return false;
+            },
+            child: _isLoading
+                ? const Text("LOAING")
+                : ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: destinationPopularData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      late DestinationModel destination =
                       destinationPopularData[index];
-                  return Row(
-                    children: [
-                      CardPopularWidget(
-                        imageCard: destination.imageCard,
-                        destinationName: destination.destinationName,
-                        price: destination.price,
-                        rating: destination.rating,
-                        subCountry: destination.subCountry,
-                        destination: destination,
-                      ),
-                      const SizedBox(
-                        width: d10,
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ))
+                      return Row(
+                        children: [
+                          CardPopularWidget(
+                            imageCard: destination.imageCard,
+                            destinationName: destination.destinationName,
+                            price: destination.price,
+                            rating: destination.rating,
+                            subCountry: destination.subCountry,
+                            destination: destination,
+                          ),
+                          const SizedBox(
+                            width: d10,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+          ),
+        )
       ],
     );
   }
@@ -189,7 +197,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (overScroll) {
-                overScroll.disallowGlow();
+                overScroll.disallowIndicator();
                 return false;
               },
               child: ListView.builder(

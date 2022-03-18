@@ -6,18 +6,22 @@ import '../../../constants/dimension.dart';
 import '../../../constants/typography.dart';
 import '../../Models/DestinationModel.dart';
 
-class DestinationDetail extends StatelessWidget {
+class DestinationDetail extends StatefulWidget {
   final DestinationModel destination;
 
   const DestinationDetail({Key? key, required this.destination})
       : super(key: key);
 
   @override
+  State<DestinationDetail> createState() => _DestinationDetailState();
+}
+
+class _DestinationDetailState extends State<DestinationDetail> {
+  late bool _isLove = false;
+  @override
   Widget build(BuildContext context) {
     Widget topWidget() {
-      return Container(
-        child: Image.network(destination.imageContent),
-      );
+      return Image.network(widget.destination.imageContent);
     }
 
     Widget cardWidget() {
@@ -45,7 +49,7 @@ class DestinationDetail extends StatelessWidget {
                     width: d5,
                   ),
                   Text(
-                    destination.rating,
+                    widget.destination.rating,
                     style: medium.copyWith(color: gray),
                   )
                 ],
@@ -55,11 +59,11 @@ class DestinationDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    destination.destinationName,
+                    widget.destination.destinationName,
                     style: bold.copyWith(color: black, fontSize: d20),
                   ),
                   Text(
-                    "Rp. " + destination.price,
+                    "Rp. " + widget.destination.price,
                     style: bold.copyWith(color: primary, fontSize: d20),
                   )
                 ],
@@ -78,7 +82,7 @@ class DestinationDetail extends StatelessWidget {
                     width: d10,
                   ),
                   Text(
-                    destination.subCountry,
+                    widget.destination.subCountry,
                     style: regular.copyWith(color: primary),
                   )
                 ],
@@ -90,7 +94,7 @@ class DestinationDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "About " + destination.destinationName,
+                    "About " + widget.destination.destinationName,
                     style: medium.copyWith(color: black, fontSize: d16),
                   ),
                   SizedBox(
@@ -102,7 +106,7 @@ class DestinationDetail extends StatelessWidget {
                     strutStyle: StrutStyle(fontSize: d10),
                     text: TextSpan(
                         style: extraLight.copyWith(color: gray),
-                        text: destination.desc),
+                        text: widget.destination.desc),
                   )
                 ],
               ),
@@ -130,7 +134,7 @@ class DestinationDetail extends StatelessWidget {
                             style: bold.copyWith(color: black),
                           ),
                           Text(
-                            "Max " + destination.visitor,
+                            "Max " + widget.destination.visitor,
                             style: regular.copyWith(color: gray),
                           )
                         ],
@@ -171,23 +175,41 @@ class DestinationDetail extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(color: Colors.red),
+        decoration: const BoxDecoration(color: Colors.red),
         child: Stack(
           children: [
             topWidget(),
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                margin: EdgeInsets.only(left: 20, top: 50),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Image.asset(
-                    back,
-                    width: d33,
-                    height: d33,
-                  ),
+                margin: const EdgeInsets.only(left: 20, top: 50, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Image.asset(
+                        back,
+                        width: d33,
+                        height: d33,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _isLove = !_isLove;
+                        });
+                      },
+                      child: Image.asset(
+                        _isLove || widget.destination.isLove ? likeActive : like,
+                        width: d33,
+                        height: d33,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

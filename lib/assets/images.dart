@@ -15,6 +15,8 @@ const visitors = 'assets/icon/visitors.png';
 const back = 'assets/icon/back.png';
 const premium = 'assets/icon/premium.png';
 const wallet = 'assets/icon/wallet.png';
+const like = 'assets/icon/like.png';
+const likeActive = 'assets/icon/like_active.png';
 
 
 const home = 'assets/icon/home.png';

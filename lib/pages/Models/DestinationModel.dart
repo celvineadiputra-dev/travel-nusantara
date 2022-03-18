@@ -41,6 +41,7 @@ class DestinationModel {
     visitor = json['visitor'];
     id = json['id'];
     isLove = json['isLove'];
+    imageContent = json['imageContent'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +52,7 @@ class DestinationModel {
       'country': country,
       'subCountry': subCountry,
       'imageCard': imageCard,
+      'imageContent': imageContent,
       'imageMini': imageMini,
       'tag': tag,
       'desc': desc,
