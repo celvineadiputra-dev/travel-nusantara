@@ -11,6 +11,7 @@ import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 import 'package:travel_nusantara/widgets/cardPopularWidget.dart';
 import 'package:travel_nusantara/widgets/recommendedCardWidget.dart';
 
+import '../../assets/string.dart';
 import '../../constants/colors.dart';
 import '../../constants/dimension.dart';
 
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: d16,
         ),
         Container(
@@ -130,27 +131,35 @@ class _HomePageState extends State<HomePage> {
         ),
         SizedBox(
             height: 322,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: destinationPopularData.length,
-              itemBuilder: (BuildContext context, int index) {
-                late DestinationModel destination =
-                    destinationPopularData[index];
-                return Row(
-                  children: [
-                    CardPopularWidget(
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overScroll) {
+                overScroll.disallowGlow();
+                return false;
+              },
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: destinationPopularData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  late DestinationModel destination =
+                      destinationPopularData[index];
+                  return Row(
+                    children: [
+                      CardPopularWidget(
                         imageCard: destination.imageCard,
                         destinationName: destination.destinationName,
                         price: destination.price,
                         rating: destination.rating,
-                        subCountry: destination.subCountry),
-                    const SizedBox(
-                      width: d10,
-                    ),
-                  ],
-                );
-              },
+                        subCountry: destination.subCountry,
+                        destination: destination,
+                      ),
+                      const SizedBox(
+                        width: d10,
+                      ),
+                    ],
+                  );
+                },
+              ),
             ))
       ],
     );
@@ -178,24 +187,31 @@ class _HomePageState extends State<HomePage> {
             height: d16,
           ),
           SizedBox(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: destinationRecommendedData.length,
-              itemBuilder: (BuildContext context, int index) {
-                late DestinationModel destination =
-                    destinationRecommendedData[index];
-                return Column(
-                  children: [
-                    RecommendedCardWidget(
-                      placeName: destination.destinationName,
-                      price: destination.price,
-                      sumStar: destination.rating,
-                      location: destination.subCountry,
-                      imageMini: destination.imageMini,
-                    )
-                  ],
-                );
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (overScroll) {
+                overScroll.disallowGlow();
+                return false;
               },
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: destinationRecommendedData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  late DestinationModel destination =
+                      destinationRecommendedData[index];
+                  return Column(
+                    children: [
+                      RecommendedCardWidget(
+                        placeName: destination.destinationName,
+                        price: destination.price,
+                        sumStar: destination.rating,
+                        location: destination.subCountry,
+                        imageMini: destination.imageMini,
+                        destination: destination,
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
           )
         ],
@@ -209,6 +225,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+        title: Text(
+          appName,
+          style: bold.copyWith(color: black),
+        ),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: d16),
@@ -222,18 +242,24 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: d16, vertical: d10),
-        child: ListView(
-          children: [
-            topApp(),
-            SizedBox(
-              height: d16,
-            ),
-            popular(),
-            SizedBox(
-              height: d16,
-            ),
-            recommended()
-          ],
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (overScroll) {
+            overScroll.disallowIndicator();
+            return false;
+          },
+          child: ListView(
+            children: [
+              topApp(),
+              SizedBox(
+                height: d16,
+              ),
+              popular(),
+              SizedBox(
+                height: d16,
+              ),
+              recommended()
+            ],
+          ),
         ),
       ),
     );

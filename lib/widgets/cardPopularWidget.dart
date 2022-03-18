@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travel_nusantara/pages/MainPage/Detail/DestinationDetail.dart';
+import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 
 import '../assets/images.dart';
 import '../constants/colors.dart';
@@ -7,6 +9,7 @@ import '../constants/typography.dart';
 
 class CardPopularWidget extends StatelessWidget {
   final String imageCard, destinationName, price, rating, subCountry;
+  final DestinationModel destination;
 
   const CardPopularWidget(
       {Key? key,
@@ -14,7 +17,8 @@ class CardPopularWidget extends StatelessWidget {
       required this.destinationName,
       required this.price,
       required this.rating,
-      required this.subCountry})
+      required this.subCountry,
+      required this.destination})
       : super(key: key);
 
   @override
@@ -116,19 +120,33 @@ class CardPopularWidget extends StatelessWidget {
                             Radius.circular(d5),
                           ),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: d10),
-                              child: Text(
-                                "More detail",
-                                style: semiBoldPoppins.copyWith(
-                                    color: Colors.white),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return DestinationDetail(
+                                    destination: destination,
+                                  );
+                                },
                               ),
-                            )
-                          ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: d10),
+                                child: Text(
+                                  "More detail",
+                                  style: semiBoldPoppins.copyWith(
+                                      color: Colors.white),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
                     ],

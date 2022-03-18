@@ -66,7 +66,7 @@ var destinationRecommendedData = [
       country: "Indonesia",
       subCountry: "Magelang, Central Java",
       imageCard: "https://dookinet.sirv.com/travel_nusantara/borobudur.png?q=30",
-      imageContent: "https://dookinet.sirv.com/travel_nusantara/example.png",
+      imageContent: "https://dookinet.sirv.com/travel_nusantara/borobudur_2_1.jpg?q=30",
       imageMini: "https://dookinet.sirv.com/travel_nusantara/borobudur.png?q=30",
       tag: "polular",
       desc:
