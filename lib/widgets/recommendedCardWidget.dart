@@ -37,71 +37,57 @@ class RecommendedCardWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(d10)),
-        padding: const EdgeInsets.all(d10),
-        child: Row(
-          children: [
-            Image.network(
-              imageMini,
-              width: 68,
-              height: 68,
-            ),
-            const SizedBox(
-              width: d10,
-            ),
-            Expanded(
-                child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      placeName,
-                      style: medium.copyWith(color: black),
-                    ),
-                    Text(
-                      price,
-                      style: medium.copyWith(color: black),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: d10,
-                ),
-                Row(
-                  children: [
-                    Image.asset(
-                      star,
-                      width: d16,
-                      height: d16,
-                    ),
-                    const SizedBox(
-                      width: d5,
-                    ),
-                    Text(
-                      sumStar,
-                      style: regular.copyWith(color: gray),
-                    ),
-                    const SizedBox(
-                      width: d10,
-                    ),
-                    Image.asset(
-                      pin2,
-                      width: d16,
-                      height: d16,
-                    ),
-                    const SizedBox(
-                      width: d5,
-                    ),
-                    Text(
-                      location,
-                      style: regular.copyWith(color: gray),
-                    )
-                  ],
-                )
-              ],
-            )),
-          ],
-        ),
+        child: ListTile(
+          leading: Image.network(
+            imageMini,
+            width: 68,
+            height: 68,
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                placeName,
+                style: medium.copyWith(color: black),
+              ),
+              Text(
+                price,
+                style: medium.copyWith(color: black),
+              )
+            ],
+          ),
+          subtitle: Row(
+            children: [
+              Image.asset(
+                star,
+                width: d16,
+                height: d16,
+              ),
+              const SizedBox(
+                width: d5,
+              ),
+              Text(
+                sumStar,
+                style: regular.copyWith(color: gray),
+              ),
+              const SizedBox(
+                width: d10,
+              ),
+              Image.asset(
+                pin2,
+                width: d16,
+                height: d16,
+              ),
+              const SizedBox(
+                width: d5,
+              ),
+              Text(
+                location,
+                style: regular.copyWith(color: gray),
+              )
+            ],
+          ),
+        )
       ),
     );
   }

@@ -17,8 +17,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  late bool _isLoading = true;
   late SharedPreferences sharedPreferences;
-  late AuthModel? auth = AuthModel(firstName: "Loading", lastName: "loading");
+  late AuthModel? auth;
 
   @override
   void initState() {
@@ -31,6 +32,10 @@ class _ProfilePageState extends State<ProfilePage> {
       });
       String? n = sharedPreferences.getString("auth_user");
       auth = AuthModel.fromJson(jsonDecode(n!));
+
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -44,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                Image(
+                const Image(
                   fit: BoxFit.cover,
                   image: AssetImage(banner),
                 ),
@@ -52,17 +57,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   bottom: -119,
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.white,
                         backgroundImage: NetworkImage(
                             'https://dookinet.sirv.com/travel_nusantara/profile.png?q=30'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: d10,
                       ),
                       Text(
-                        auth?.fullName ?? "-",
+                        _isLoading ? "Loading" : auth?.fullName ?? "-",
                         style: bold.copyWith(color: black, fontSize: d24),
                       ),
                       Text(
@@ -74,11 +79,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 140,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: d16),
+              padding: const EdgeInsets.symmetric(horizontal: d16),
               child: Column(
                 children: [
                   Container(
@@ -86,19 +91,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(d10)),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Image.asset(
                             premium,
                             width: 52,
                             height: 52,
                           ),
-                          SizedBox(
-                            width: d10,
-                          ),
-                          Column(
+                          title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
@@ -106,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 style:
                                     bold.copyWith(color: black, fontSize: d16),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: d5,
                               ),
                               Text(
@@ -114,12 +114,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 style: regular.copyWith(color: gray),
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
+                          ),
+                        )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: d16,
                   ),
                   Container(
@@ -128,29 +126,23 @@ class _ProfilePageState extends State<ProfilePage> {
                         borderRadius: BorderRadius.circular(d10)),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            wallet,
-                            width: 52,
-                            height: 52,
-                          ),
-                          SizedBox(
-                            width: d10,
-                          ),
-                          Text(
-                            "Payment & Wallet",
-                            style: bold.copyWith(color: black, fontSize: d16),
-                          ),
-                        ],
+                      child: ListTile(
+                        leading: Image.asset(
+                          wallet,
+                          width: 52,
+                          height: 52,
+                        ),
+                        title: Text(
+                          "Payment & Wallet",
+                          style: bold.copyWith(color: black, fontSize: d16),
+                        ),
                       ),
                     ),
                   )
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: d24,
             ),
             Text(

@@ -142,14 +142,21 @@ class _HomePageState extends State<HomePage> {
               return false;
             },
             child: _isLoading
-                ? const Text("LOAING")
-                : ListView.builder(
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.separated(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: destinationPopularData.length,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        width: d10,
+                      );
+                    },
                     itemBuilder: (BuildContext context, int index) {
                       late DestinationModel destination =
-                      destinationPopularData[index];
+                          destinationPopularData[index];
                       return Row(
                         children: [
                           CardPopularWidget(
@@ -159,9 +166,6 @@ class _HomePageState extends State<HomePage> {
                             rating: destination.rating,
                             subCountry: destination.subCountry,
                             destination: destination,
-                          ),
-                          const SizedBox(
-                            width: d10,
                           ),
                         ],
                       );
@@ -200,26 +204,33 @@ class _HomePageState extends State<HomePage> {
                 overScroll.disallowIndicator();
                 return false;
               },
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: destinationRecommendedData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  late DestinationModel destination =
-                      destinationRecommendedData[index];
-                  return Column(
-                    children: [
-                      RecommendedCardWidget(
-                        placeName: destination.destinationName,
-                        price: destination.price,
-                        sumStar: destination.rating,
-                        location: destination.subCountry,
-                        imageMini: destination.imageMini,
-                        destination: destination,
-                      )
-                    ],
-                  );
-                },
-              ),
+              child: _isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: destinationRecommendedData.length,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(height: d10,);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        late DestinationModel destination =
+                            destinationRecommendedData[index];
+                        return Column(
+                          children: [
+                            RecommendedCardWidget(
+                              placeName: destination.destinationName,
+                              price: destination.price,
+                              sumStar: destination.rating,
+                              location: destination.subCountry,
+                              imageMini: destination.imageMini,
+                              destination: destination,
+                            )
+                          ],
+                        );
+                      },
+                    ),
             ),
           )
         ],
