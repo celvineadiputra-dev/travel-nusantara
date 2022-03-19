@@ -91,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(d10)),
                     child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: d5, right: d5, bottom: d5),
                         child: ListTile(
                           leading: Image.asset(
                             premium,
@@ -125,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(d10)),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: d5, right: d5, bottom: d5),
                       child: ListTile(
                         leading: Image.asset(
                           wallet,

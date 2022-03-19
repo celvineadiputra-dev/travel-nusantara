@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
 import 'package:travel_nusantara/constants/typography.dart';
 import 'package:travel_nusantara/pages/Data/DestinationData.dart';
+import 'package:travel_nusantara/pages/MainPage/Search/DestinationSearch.dart';
 import 'package:travel_nusantara/pages/Models/AuthModel.dart';
 import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 import 'package:travel_nusantara/widgets/cardPopularWidget.dart';
@@ -26,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   late bool _isLoading = true;
   late SharedPreferences sharedPrefs;
   late AuthModel? auth;
+  late List<DestinationModel> destinationPopularData = [];
+  late List<DestinationModel> destinationRecommendedData = [];
 
   @override
   initState() {
@@ -38,6 +41,13 @@ class _HomePageState extends State<HomePage> {
       auth = AuthModel.fromJson(jsonDecode(n!));
 
       setState(() {
+        destinationPopularData = destinationData
+            .where((element) => element.tag == "polular")
+            .toList();
+        destinationRecommendedData = destinationData
+            .where((element) => element.tag == "recommended")
+            .toList();
+
         _isLoading = false;
       });
     });
@@ -98,6 +108,11 @@ class _HomePageState extends State<HomePage> {
           child: TextFormField(
             maxLines: 1,
             textAlignVertical: TextAlignVertical.center,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const DestinationSearch();
+              }));
+            },
             decoration: InputDecoration(
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(2),
@@ -150,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: destinationPopularData.length,
                     separatorBuilder: (context, index) {
-                      return SizedBox(
+                      return const SizedBox(
                         width: d10,
                       );
                     },
@@ -209,10 +224,13 @@ class _HomePageState extends State<HomePage> {
                       child: CircularProgressIndicator(),
                     )
                   : ListView.separated(
+                      physics: const ScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: destinationRecommendedData.length,
                       separatorBuilder: (context, index) {
-                        return SizedBox(height: d10,);
+                        return const SizedBox(
+                          height: d10,
+                        );
                       },
                       itemBuilder: (BuildContext context, int index) {
                         late DestinationModel destination =

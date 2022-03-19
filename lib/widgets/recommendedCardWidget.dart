@@ -40,8 +40,6 @@ class RecommendedCardWidget extends StatelessWidget {
         child: ListTile(
           leading: Image.network(
             imageMini,
-            width: 68,
-            height: 68,
           ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +69,7 @@ class RecommendedCardWidget extends StatelessWidget {
                 style: regular.copyWith(color: gray),
               ),
               const SizedBox(
-                width: d10,
+                width: d5,
               ),
               Image.asset(
                 pin2,

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/assets/images.dart';
 import 'package:travel_nusantara/constants/dimension.dart';
-import 'package:travel_nusantara/pages/Data/DestinationData.dart';
 import 'package:travel_nusantara/pages/Models/AuthModel.dart';
 import 'package:travel_nusantara/widgets/InputWidget.dart';
 import 'package:travel_nusantara/widgets/buttonRoundedCallbackWidget.dart';
@@ -31,7 +30,6 @@ class _LoginState extends State<Login> {
           firstName: inputFirstNameController.text,
           lastName: inputLastNameController.text);
       prefs.setString("auth_user", jsonEncode(user));
-      developer.log(jsonEncode(user));
     }
 
     return Scaffold(

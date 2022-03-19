@@ -25,7 +25,7 @@ class ButtonRoundedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, to);
+        Navigator.pushReplacementNamed(context, to);
       },
       child: Container(
         width: isFull ? double.infinity : 150,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_nusantara/pages/Auth/Login.dart';
+import 'package:travel_nusantara/pages/MainPage/Search/DestinationSearch.dart';
 import 'package:travel_nusantara/pages/MainScreenPage.dart';
 import 'package:travel_nusantara/pages/OnBoardingScreenPage.dart';
 import 'package:travel_nusantara/pages/SplashScreenPage.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         '/' : (context) => const SplashScreen(),
         '/onboarding' : (context) => const OnBoardingScreenPage(),
         '/login' : (context) => const Login(),
-        '/home' : (context) => const MainScreenPage()
+        '/home' : (context) => const MainScreenPage(),
+        '/search' : (context) => const DestinationSearch()
       },
     );
   }
