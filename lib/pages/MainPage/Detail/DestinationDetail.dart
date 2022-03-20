@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../assets/images.dart';
 import '../../../constants/colors.dart';
@@ -18,16 +19,42 @@ class DestinationDetail extends StatefulWidget {
 
 class _DestinationDetailState extends State<DestinationDetail> {
   late bool _isLove = false;
+
+  static Future<void> openMaps(double lat, double long) async {
+    String googleUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$long';
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget topWidget() {
-      return Image.network(widget.destination.imageContent);
+      return Image.network(
+        widget.destination.imageContent,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent? loadingProgress) {
+          if (loadingProgress == null) {
+            return child;
+          }
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes!
+                  : null,
+            ),
+          );
+        },
+      );
     }
 
     Widget cardWidget() {
       return Container(
         height: 370,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(d16),
@@ -45,7 +72,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                     width: d16,
                     height: d16,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: d5,
                   ),
                   Text(
@@ -68,7 +95,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: d10,
               ),
               Row(
@@ -78,7 +105,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                     width: d16,
                     height: d16,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: d10,
                   ),
                   Text(
@@ -87,7 +114,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: d10,
               ),
               Column(
@@ -97,7 +124,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                     "About " + widget.destination.destinationName,
                     style: medium.copyWith(color: black, fontSize: d16),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: d5,
                   ),
                   RichText(
@@ -110,7 +137,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: d10,
               ),
               Row(
@@ -123,7 +150,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                         width: 38,
                         height: 38,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: d10,
                       ),
                       Column(
@@ -140,10 +167,42 @@ class _DestinationDetailState extends State<DestinationDetail> {
                         ],
                       )
                     ],
+                  ),
+                  const SizedBox(width: d16,),
+                  InkWell(
+                    onTap: (){
+                      openMaps(widget.destination.lan, widget.destination.long);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          map,
+                          width: 38,
+                          height: 38,
+                        ),
+                        const SizedBox(
+                          width: d10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Maps",
+                              style: bold.copyWith(color: black),
+                            ),
+                            Text(
+                              "Open google maps",
+                              style: regular.copyWith(color: gray),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: d20,
               ),
               InkWell(
@@ -175,7 +234,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(color: Colors.red),
+        decoration: const BoxDecoration(color: gray3),
         child: Stack(
           children: [
             topWidget(),
@@ -204,7 +263,9 @@ class _DestinationDetailState extends State<DestinationDetail> {
                         });
                       },
                       child: Image.asset(
-                        _isLove || widget.destination.isLove ? likeActive : like,
+                        _isLove || widget.destination.isLove
+                            ? likeActive
+                            : like,
                         width: d33,
                         height: d33,
                       ),

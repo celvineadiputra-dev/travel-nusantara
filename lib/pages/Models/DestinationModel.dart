@@ -12,6 +12,7 @@ class DestinationModel {
       visitor;
   late int id;
   late bool isLove;
+  late double lan, long;
 
   DestinationModel(
       {required this.destinationName,
@@ -25,7 +26,9 @@ class DestinationModel {
       required this.tag,
       required this.desc,
       required this.visitor,
-        required this.id,
+      required this.id,
+      required this.lan,
+      required this.long,
       this.isLove = false});
 
   DestinationModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +45,8 @@ class DestinationModel {
     id = json['id'];
     isLove = json['isLove'];
     imageContent = json['imageContent'];
+    lan = json['lan'];
+    long = json['long'];
   }
 
   Map<String, dynamic> toJson() {
@@ -59,6 +64,8 @@ class DestinationModel {
       'visitor': visitor,
       'id': id,
       'isLove': isLove,
+      'lan': lan,
+      'long': long,
     };
   }
 }

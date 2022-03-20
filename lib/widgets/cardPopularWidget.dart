@@ -35,11 +35,27 @@ class _CardPopularWidgetState extends State<CardPopularWidget> {
       width: 212,
       child: Stack(
         children: [
-          Image.network(widget.imageCard),
+          Image.network(
+            widget.imageCard,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              }
+              return Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+                ),
+              );
+            },
+          ),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: EdgeInsets.all(d10),
+              padding: const EdgeInsets.all(d10),
               child: Container(
                 width: d33,
                 height: d33,
@@ -50,12 +66,13 @@ class _CardPopularWidgetState extends State<CardPopularWidget> {
                       Radius.circular(100),
                     )),
                 child: InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       isLove = !isLove;
                     });
                   },
-                  child: Image.asset(isLove || widget.destination.isLove ? likeActive : like),
+                  child: Image.asset(
+                      isLove || widget.destination.isLove ? likeActive : like),
                 ),
               ),
             ),

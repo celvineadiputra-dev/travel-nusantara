@@ -18,7 +18,7 @@ class OnBoardingScreenPage extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(temple), fit: BoxFit.fitWidth),
+                  image: AssetImage(temple), fit: BoxFit.cover),
             ),
           ),
           Align(
@@ -42,7 +42,7 @@ class OnBoardingScreenPage extends StatelessWidget {
                   children: [
                     Text(
                       "Start your journey",
-                      style: bold.copyWith(fontSize: d48, color: black),
+                      style: bold.copyWith(fontSize: 43, color: black),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -50,7 +50,7 @@ class OnBoardingScreenPage extends StatelessWidget {
                     ),
                     Text(
                       "Join and carve out the goodness of your vacation trip with us",
-                      style: regular.copyWith(fontSize: d16, color: gray),
+                      style: regular.copyWith(fontSize: 15, color: gray),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
