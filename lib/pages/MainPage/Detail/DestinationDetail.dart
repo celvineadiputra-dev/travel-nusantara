@@ -130,7 +130,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                   RichText(
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
-                    strutStyle: StrutStyle(fontSize: d10),
+                    strutStyle: const StrutStyle(fontSize: d10),
                     text: TextSpan(
                         style: extraLight.copyWith(color: gray),
                         text: widget.destination.desc),

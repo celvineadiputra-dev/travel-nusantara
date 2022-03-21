@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -115,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             },
             decoration: InputDecoration(
                 prefixIcon: Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Image.asset(
                     search,
                     width: d10,
@@ -268,7 +267,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: d16),
+            padding: const EdgeInsets.symmetric(horizontal: d16),
             child: Image.asset(
               notification,
               width: d24,
@@ -278,7 +277,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: d16, vertical: d10),
+        padding: const EdgeInsets.symmetric(horizontal: d16, vertical: d10),
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (overScroll) {
             overScroll.disallowIndicator();
@@ -287,11 +286,11 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             children: [
               topApp(),
-              SizedBox(
+              const SizedBox(
                 height: d16,
               ),
               popular(),
-              SizedBox(
+              const SizedBox(
                 height: d16,
               ),
               recommended()

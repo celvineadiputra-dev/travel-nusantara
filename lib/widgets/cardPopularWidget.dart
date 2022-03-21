@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_nusantara/pages/MainPage/Detail/DestinationDetail.dart';
 import 'package:travel_nusantara/pages/Models/DestinationModel.dart';
 
@@ -59,8 +58,8 @@ class _CardPopularWidgetState extends State<CardPopularWidget> {
               child: Container(
                 width: d33,
                 height: d33,
-                padding: EdgeInsets.all(d5),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(d5),
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(
                       Radius.circular(100),
@@ -87,7 +86,7 @@ class _CardPopularWidgetState extends State<CardPopularWidget> {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(d10))),
                 child: Padding(
-                  padding: EdgeInsets.all(d10),
+                  padding: const EdgeInsets.all(d10),
                   child: Column(
                     children: [
                       Row(
@@ -98,7 +97,7 @@ class _CardPopularWidgetState extends State<CardPopularWidget> {
                             style: bold.copyWith(fontSize: d16),
                           ),
                           Text(
-                            this.widget.price,
+                            widget.price,
                             style: bold.copyWith(fontSize: d16),
                           ),
                         ],

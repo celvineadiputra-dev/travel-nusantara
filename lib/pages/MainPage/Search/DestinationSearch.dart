@@ -79,7 +79,7 @@ class _DestinationSearchState extends State<DestinationSearch> {
             height: d16,
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: d10, vertical: d5),
+            margin: const EdgeInsets.symmetric(horizontal: d10, vertical: d5),
             child: data.isEmpty
                 ? Center(
                     child: Image.asset(found),

@@ -23,13 +23,13 @@ class _MainScreenPageState extends State<MainScreenPage> {
     Widget bodyScreen() {
       switch (_currentIndex) {
         case 0 :
-          return HomePage();
+          return const HomePage();
         case 1 :
-          return LovePage();
+          return const LovePage();
         case 2 :
-          return ProfilePage();
+          return const ProfilePage();
         default:
-          return HomePage();
+          return const HomePage();
       }
     }
 
@@ -54,7 +54,7 @@ class _MainScreenPageState extends State<MainScreenPage> {
                   width: d24,
                   height: d24,
                 ),
-                title: Text("Home"),
+                title: const Text("Home"),
                 selectedColor: primary),
             SalomonBottomBarItem(
                 icon: _currentIndex == 1
@@ -68,7 +68,7 @@ class _MainScreenPageState extends State<MainScreenPage> {
                   width: d24,
                   height: d24,
                 ),
-                title: Text("Love"),
+                title: const Text("Love"),
                 selectedColor: red),
             SalomonBottomBarItem(
                 icon: _currentIndex == 2
@@ -82,7 +82,7 @@ class _MainScreenPageState extends State<MainScreenPage> {
                   width: d24,
                   height: d24,
                 ),
-                title: Text("Profile"),
+                title: const Text("Profile"),
                 selectedColor: orange)
           ],
         ),

@@ -2,11 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:travel_nusantara/assets/images.dart';
-import 'package:travel_nusantara/constants/typography.dart';
 import 'package:travel_nusantara/pages/OnBoardingScreenPage.dart';
-
-import '../assets/string.dart';
-import '../constants/dimension.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
