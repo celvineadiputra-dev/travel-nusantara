@@ -7,17 +7,17 @@ Dicoding Submission 1
 <img src="Github_asset/dicoding_s.png"/>
 <h2>2. Tampilan Aplikasi</h2>
 <div>
-    <img src="Github_asset/p1.jpg" width="250px"/>
-    <img src="Github_asset/p2.jpg" width="250px"/>
-    <img src="Github_asset/p3.jpg" width="250px"/>
-    <img src="Github_asset/p4.jpg" width="250px"/>
-    <img src="Github_asset/p5.jpg" width="250px"/>
-    <img src="Github_asset/p6.jpg" width="250px"/>
-    <img src="Github_asset/p7.jpg" width="250px"/>
-    <img src="Github_asset/p8.jpg" width="250px"/>
-    <img src="Github_asset/p9.jpg" width="250px"/>
-    <img src="Github_asset/p10.jpg" width="250px"/>
-    <img src="Github_asset/p11.jpg" width="250px"/>
+    <img src="Github_asset_1/p1.jpg" width="250px"/>
+    <img src="Github_asset_1/p2.jpg" width="250px"/>
+    <img src="Github_asset_1/p3.jpg" width="250px"/>
+    <img src="Github_asset_1/p4.jpg" width="250px"/>
+    <img src="Github_asset_1/p5.jpg" width="250px"/>
+    <img src="Github_asset_1/p6.jpg" width="250px"/>
+    <img src="Github_asset_1/p7.jpg" width="250px"/>
+    <img src="Github_asset_1/p8.jpg" width="250px"/>
+    <img src="Github_asset_1/p9.jpg" width="250px"/>
+    <img src="Github_asset_1/p10.jpg" width="250px"/>
+    <img src="Github_asset_1/p11.jpg" width="250px"/>
 </div>
 <h2>3. Informasi kelas</h2>
 <b>Materi yang dipelajari:</b>
