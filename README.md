@@ -4,7 +4,7 @@ Dicoding Submission 1
 <h1>Belajar Membuat Aplikasi Flutter untuk Pemula</h1>
 <h2>1. Informasi Submission</h2>
 <img src="Github_asset_1/dicoding_review.png"/>
-<img src="Github_asset_1/dicoding_s.png"/>
+<img src="Github_asset_1/dicoding_s.png" width="70%"/>
 <h2>2. Tampilan Aplikasi</h2>
 <div>
     <img src="Github_asset_1/p1.jpg" width="250px"/>
