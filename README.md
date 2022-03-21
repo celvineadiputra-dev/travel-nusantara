@@ -6,6 +6,7 @@ Dicoding Submission 1
 <img src="Github_asset_1/dicoding_review.png"/>
 <img src="Github_asset_1/dicoding_s.png" width="70%"/>
 <h2>2. Tampilan Aplikasi</h2>
+<a href="https://drive.google.com/file/d/1JSEmc6CuyaQ2xIoDg3ccBSQ3sFisMEQX/view?usp=sharing">Download Travel Nusantara Android</a>
 <div>
     <img src="Github_asset_1/p1.jpg" width="250px"/>
     <img src="Github_asset_1/p2.jpg" width="250px"/>
